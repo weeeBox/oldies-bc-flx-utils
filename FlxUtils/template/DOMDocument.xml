@@ -1,4 +1,13 @@
 <DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" currentTimeline="1" xflVersion="2.0" creatorInfo="Adobe Flash Professional CS5" platform="Windows" versionInfo="Saved by Adobe Flash Windows 11.0 build 485" majorVersion="11" buildNumber="485" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false">
+     <folders>
+          <DOMFolderItem name="folder" itemID="4f5c7f7a-0000028c" isExpanded="true"/>
+     </folders>
+     <media>
+          <DOMBitmapItem name="folder/bitmap.png" itemID="4f5c7f5a-00000287" sourceExternalFilepath=".\LIBRARY\bitmap.png" sourceLastImported="1331461415" externalFileSize="12428" originalCompressionType="lossless" quality="50" href="folder\bitmap.png" bitmapDataHRef="M 1 1331461957.dat" frameRight="2400" frameBottom="2300"/>
+     </media>
+     <symbols>
+          <Include href="folder/bitmap.xml" itemIcon="1" loadImmediate="false"/>
+     </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
                <layers>
