@@ -66,8 +66,10 @@ public class BcMatrix
 	/** Applies a rotation transformation to the Matrix object. */
 	public void rotate(float angle)
 	{
-		float cosA = (float) Math.cos(angle);
-		float sinA = (float) Math.sin(angle);
+		double radians = Math.toRadians(angle);
+		
+		float cosA = (float) Math.cos(radians);
+		float sinA = (float) Math.sin(radians);
 		concatValues(cosA, sinA, -sinA, cosA, 0, 0);
 	}
 	

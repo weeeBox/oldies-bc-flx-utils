@@ -25,6 +25,7 @@ import bc.flash.flx.library.FlxGraphic;
 import bc.flash.flx.library.FlxLibraryFolder;
 import bc.flash.flx.library.FlxSymbol;
 import bc.flash.flx.library.FlxSymbolInstance;
+import bc.flash.flx.template.FlxProjectTemplate;
 import bc.flash.flx.utils.FlxUtils;
 import bc.utils.BcFileUtils;
 import bc.utils.BcImageUtils;
@@ -35,32 +36,38 @@ public class Main
 
 	public static void main(String[] args) throws IOException
 	{
-		String projName = args[0];
-		File outDir = new File(args[1]);
-		File enemyDataFile = new File(args[2]);
+//		String projName = args[0];
+//		File outDir = new File(args[1]);
+//		File enemyDataFile = new File(args[2]);
+//		
+//		BcEnemyData enemyData = readEnemyData(enemyDataFile);
+//		if (enemyData == null)
+//		{
+//			throw new IOException("Unable to read enemy data: " + enemyDataFile);
+//		}
+//		
+//		FlxProject project = new FlxProject(projName);
+//		
+//		String symbolName = enemyData.getName();
+//		String folderName = ENEMY_PREFIX + symbolName;
+//		FlxLibraryFolder rootFolder = project.getLibrary().addFolder(folderName);
+//		
+//		List<BcModel> models = enemyData.getModels();
+//		for (BcModel model : models)
+//		{
+//			rootFolder.add(createSymbol(model.getId(), model));
+//		}
+//		
+//		File projDir = new File(outDir, projName);
+//		projDir.mkdir();
+//		
+//		project.write(projDir);
 		
-		BcEnemyData enemyData = readEnemyData(enemyDataFile);
-		if (enemyData == null)
-		{
-			throw new IOException("Unable to read enemy data: " + enemyDataFile);
-		}
+		File templateDir = new File("template");
+		FlxProjectTemplate template = new FlxProjectTemplate(templateDir);
+		template.load();
 		
-		FlxProject project = new FlxProject(projName);
-		
-		String symbolName = enemyData.getName();
-		String folderName = ENEMY_PREFIX + symbolName;
-		FlxLibraryFolder rootFolder = project.getLibrary().addFolder(folderName);
-		
-		List<BcModel> models = enemyData.getModels();
-		for (BcModel model : models)
-		{
-			rootFolder.add(createSymbol(model.getId(), model));
-		}
-		
-		File projDir = new File(outDir, projName);
-		projDir.mkdir();
-		
-		project.write(projDir);
+		System.out.println("Done");
 	}
 
 	private static FlxSymbol createSymbol(String name, BcDisplayObjectContainer container)

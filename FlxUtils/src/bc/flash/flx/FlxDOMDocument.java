@@ -1,11 +1,15 @@
 package bc.flash.flx;
 
+import org.dom4j.Document;
+
 public class FlxDOMDocument extends FlxElement
 {
 	private FlxContainer folders;
 	private FlxContainer media;
 	private FlxContainer symbols;
 	private FlxContainer timelines;
+	
+	private Document xmlDocument;
 	
 	public FlxDOMDocument()
 	{
@@ -18,6 +22,11 @@ public class FlxDOMDocument extends FlxElement
 		addElement(media);
 		addElement(symbols);
 		addElement(timelines);
+	}
+
+	public FlxDOMDocument(Document xmlDocument)
+	{
+		this.xmlDocument = xmlDocument;
 	}
 
 	public FlxDOMFolderItem addFolder(String name)

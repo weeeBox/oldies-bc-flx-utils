@@ -5,9 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.dom4j.Attribute;
 import org.dom4j.Document;
-import org.dom4j.DocumentFactory;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Namespace;
@@ -18,8 +16,7 @@ import org.dom4j.io.XMLWriter;
 import bc.flash.flx.FlxAttribute;
 import bc.flash.flx.FlxDOMDocument;
 import bc.flash.flx.FlxElement;
-import bc.flash.flx.FlxContainer;
-import bc.flash.xml.XMLHelper;
+import bc.utils.xml.XMLHelper;
 
 public class FlxDOMWriter
 {

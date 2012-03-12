@@ -9,8 +9,8 @@ import org.dom4j.Element;
 
 import bc.craqua.util.BcColor;
 import bc.craqua.util.BcPoint;
-import bc.flash.xml.XMLHelper;
 import bc.utils.BcFileUtils;
+import bc.utils.xml.XMLHelper;
 
 public class BcEnemyDataReader
 {
