@@ -9,7 +9,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-public class XMLObjectReader
+public class DOMXmlReader
 {
 	public <T> T read(File file, Class<T> clazz) throws IOException
 	{
@@ -45,8 +45,10 @@ public class XMLObjectReader
 		throw new IOException("Unexpected class: " + object.getClass());
 	}
 
-	private Object read(Element rootElement)
+	private Object read(Element element)
 	{
+		String className = element.getName();
+		
 		return null;
 	}
 

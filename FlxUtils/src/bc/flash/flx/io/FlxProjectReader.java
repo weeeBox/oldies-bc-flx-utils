@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import bc.flash.flx.FlxProject;
 import bc.flash.flx.dom.DOMDocument;
-import bc.flash.flx.io.xml.XMLObjectReader;
+import bc.flash.flx.io.xml.DOMXmlReader;
 
 public class FlxProjectReader
 {
@@ -40,6 +40,6 @@ public class FlxProjectReader
 
 	private DOMDocument readDocument(File file) throws IOException
 	{
-		return new XMLObjectReader().read(file, DOMDocument.class);
+		return new DOMXmlReader().read(file, DOMDocument.class);
 	}
 }
