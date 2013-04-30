@@ -1,38 +1,45 @@
 package bc.flash.flx.io;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 
 import bc.flash.flx.FlxProject;
+import bc.flash.flx.dom.DOMDocument;
 import bc.flash.flx.io.xml.XMLObjectReader;
 
 public class FlxProjectReader
 {
-	public FlxProject read(File file) throws IOException
-	{
-		FileInputStream fis = null;
-		try
-		{
-			fis = new FileInputStream(file);
-			return read(fis);
-		}
-		finally
-		{
-			if (fis != null)
-				fis.close();
-		}
-	}
+	private static final String DOCUMENT_FILENAME = "DOMDocument.xml";
 
-	public FlxProject read(InputStream is) throws IOException
+	public FlxProject read(File projDir) throws IOException
 	{
-		Object root = new XMLObjectReader().read(is);
-		if (root instanceof FlxProject)
+		if (projDir == null)
 		{
-			return (FlxProject) root;
+			throw new NullPointerException("'projDir' is null");
 		}
 		
-		throw new IOException("Unexpected root class: " + root.getClass());
+		if (!projDir.exists())
+		{
+			throw new FileNotFoundException("Project directory doesn't exist: " + projDir);
+		}
+		
+		if (!projDir.isDirectory())
+		{
+			throw new IOException("File is not a directory: " + projDir);
+		}
+		
+		String projName = projDir.getName();
+		FlxProject proj = new FlxProject(projName);
+		
+		File docFile = new File(projDir, DOCUMENT_FILENAME);
+		proj.document = readDocument(docFile);
+		
+		return proj;
+	}
+
+	private DOMDocument readDocument(File file) throws IOException
+	{
+		return new XMLObjectReader().read(file, DOMDocument.class);
 	}
 }
