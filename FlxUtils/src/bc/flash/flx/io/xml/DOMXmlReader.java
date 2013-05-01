@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.dom4j.Document;
@@ -13,6 +14,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import bc.flash.flx.dom.Color;
+import bc.flash.flx.dom.Group;
 import bc.flash.flx.io.xml.types.BooleanTypeReader;
 import bc.flash.flx.io.xml.types.ColorTypeReader;
 import bc.flash.flx.io.xml.types.FloatTypeReader;
@@ -90,7 +92,8 @@ public class DOMXmlReader
 			Class<?> clazz = findClass(className);
 			Object object = clazz.newInstance();
 			
-			readAttributes(object, element, clazz.getFields());
+			readAttributes(object, element, clazz);
+			readElements(object, element, clazz);
 			
 			return object;
 		}
@@ -102,8 +105,9 @@ public class DOMXmlReader
 		return null;
 	}
 
-	private void readAttributes(Object object, Element element, Field[] fields) throws TypeReadException
+	private void readAttributes(Object object, Element element, Class<?> cls) throws TypeReadException
 	{
+		Field[] fields = cls.getFields();
 		for (Field field : fields)
 		{
 			String name = field.getName();
@@ -135,6 +139,49 @@ public class DOMXmlReader
 		catch (Exception e)
 		{
 			throw new TypeReadException(e);
+		}
+	}
+	
+	private void readElements(Object object, Element element, Class<?> cls) throws TypeReadException
+	{
+		Field[] fields = cls.getFields();
+		for (Field field : fields)
+		{
+			if (field.getType() == Group.class) // TODO: add better type checking
+			{
+				readGroups(object, field, element);
+			}
+		}
+	}
+
+	private void readGroups(Object object, Field field, Element parent) throws TypeReadException
+	{
+		try
+		{
+			String name = field.getName();
+			List<Element> elements = parent.elements(name);
+			
+			if (elements.size() > 0)
+			{
+				Group group = (Group)field.get(object);
+				for (Element groupElement : elements)
+				{
+					readGroup(group, groupElement);
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			throw new TypeReadException(e);
+		}
+	}
+
+	private void readGroup(Group group, Element parentElement)
+	{
+		List<Element> elements = parentElement.elements();
+		for (Element element : elements)
+		{
+			group.add(read(element));
 		}
 	}
 
