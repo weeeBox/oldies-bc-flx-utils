@@ -2,9 +2,9 @@ package bc.flash.flx.dom;
 
 public class DOMDocument extends DOMItem
 {
-	public String backgroundColor;
-	public String gridColor;
-	public String guidesColor;
+	public Color backgroundColor;
+	public Color gridColor;
+	public Color guidesColor;
 	public int width;
 	public int height;
 	public int frameRate;
