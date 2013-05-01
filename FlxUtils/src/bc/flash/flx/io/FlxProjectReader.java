@@ -40,6 +40,6 @@ public class FlxProjectReader
 
 	private DOMDocument readDocument(File file) throws IOException
 	{
-		return new DOMXmlReader().read(file, DOMDocument.class);
+		return new DOMXmlReader("bc.flash.flx.dom").read(file, DOMDocument.class);
 	}
 }
